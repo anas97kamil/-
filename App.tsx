@@ -5,6 +5,7 @@ import InfoBox from './components/InfoBox';
 import OrderForm from './components/OrderForm';
 import SocialCard from './components/SocialCard';
 import Logo from './components/Logo';
+import RecipeGenerator from './components/RecipeGenerator';
 import { ProductsTab } from './components/ProductsTab';
 import { Cookie, ChefHat, Utensils, Star, Phone, LayoutGrid, Home } from 'lucide-react';
 
@@ -93,6 +94,10 @@ const App: React.FC = () => {
         <div className="min-h-[400px]">
           {activeTab === 'home' ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 animate-in fade-in duration-700 pb-10">
+              {/* Recipe Generator Added for AI Functionality */}
+              <div className="md:col-span-2 transform transition-all duration-500 hover:scale-[1.01] animate-in slide-in-from-bottom-10 fade-in duration-1000 delay-50">
+                <RecipeGenerator />
+              </div>
               <div className="md:col-span-2 transform transition-all duration-500 hover:scale-[1.01] animate-in slide-in-from-bottom-10 fade-in duration-1000 delay-100">
                 <OrderForm />
               </div>

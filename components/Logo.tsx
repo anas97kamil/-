@@ -1,13 +1,12 @@
 
 import React, { useState } from 'react';
 import { Cookie } from 'lucide-react';
-// @ts-ignore - نستخدم هذا التعليق لضمان عدم توقف الـ Build في حال لم يتم التقاط التعريف الجديد فوراً
-import logoImg from '../logo.png';
 
 /**
- * تصدير الرابط ليتم استخدامه في الهيدر أيضاً
+ * استخدام المسار المباشر من الجذر لضمان عمل الشعار في كافة البيئات (Vercel, GitHub, Local)
+ * دون الحاجة لمعالجة الملف كـ Module.
  */
-export const LOGO_URL = logoImg;
+export const LOGO_URL = '/logo.png';
 
 interface LogoProps {
   className?: string;
@@ -27,7 +26,7 @@ export const Logo: React.FC<LogoProps> = ({ className }) => {
               alt="مخبز كوكيز" 
               className={`w-full h-full object-contain transition-all duration-700 ${isImageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
               onLoad={() => setIsImageLoaded(true)}
-              onError={() => {
+              onError={(e) => {
                 console.error("فشل تحميل الشعار من المسار:", LOGO_URL);
                 setImageError(true);
               }}
@@ -39,6 +38,7 @@ export const Logo: React.FC<LogoProps> = ({ className }) => {
             )}
           </>
         ) : (
+          /* شعار احتياطي يظهر فقط في حال فشل تحميل ملف logo.png تماماً */
           <div className="relative w-32 h-32 md:w-48 md:h-48 flex items-center justify-center group">
             <div className="absolute inset-0 bg-gradient-to-br from-[#FA8072] to-[#FFB6C1] rounded-full blur-2xl opacity-20"></div>
             <div className="relative w-full h-full bg-white dark:bg-slate-800 rounded-full border-4 border-[#FA8072]/30 flex flex-col items-center justify-center shadow-2xl">
