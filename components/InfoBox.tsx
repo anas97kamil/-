@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Phone, Mail, MapPin, MessageCircle, ExternalLink, Sparkles } from 'lucide-react';
 
@@ -76,10 +77,10 @@ export const InfoBox: React.FC = () => {
             href="https://wa.me/963957432958"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full flex items-center justify-center gap-3 bg-white/60 dark:bg-slate-800/60 backdrop-blur-md hover:bg-[#25D366] text-gray-800 dark:text-gray-100 hover:text-white py-5 px-8 rounded-2xl font-black shadow-lg transition-all hover:-translate-y-1 active:scale-95 border border-white/50 dark:border-white/10"
+            className="w-full flex items-center justify-center gap-3 bg-white/60 dark:bg-slate-800/60 backdrop-blur-md hover:bg-[#25D366] text-gray-800 dark:text-gray-100 hover:text-white py-4 px-8 rounded-2xl font-black shadow-lg transition-all hover:-translate-y-1 active:scale-95 border border-white/50 dark:border-white/10"
           >
             <MessageCircle className="w-6 h-6" />
-            <span className="text-xl">تحدث معنا عبر واتساب</span>
+            <span className="text-lg">تحدث معنا عبر واتساب</span>
           </a>
         </div>
       </div>

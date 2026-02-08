@@ -93,7 +93,7 @@ const App: React.FC = () => {
         <div className="min-h-[400px]">
           {activeTab === 'home' ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 animate-in fade-in duration-700 pb-10">
-              <div className="md:col-span-2 transform transition-all duration-500 hover:scale-[1.01] animate-in slide-in-from-bottom-10 fade-in duration-1000">
+              <div className="md:col-span-2 transform transition-all duration-500 hover:scale-[1.01] animate-in slide-in-from-bottom-10 fade-in duration-1000 delay-100">
                 <OrderForm />
               </div>
               <div className="md:col-span-1 transform transition-all duration-500 hover:scale-[1.02] animate-in slide-in-from-bottom-10 fade-in duration-1000 delay-200">

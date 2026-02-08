@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Send, ShoppingBag, MessageCircle, Sparkles } from 'lucide-react';
 
@@ -44,14 +45,14 @@ export const OrderForm: React.FC = () => {
           <button
             onClick={handleSendOrder}
             disabled={!message.trim()}
-            className={`w-full flex items-center justify-center gap-3 py-5 rounded-2xl font-black text-lg shadow-xl transition-all duration-300 transform active:scale-95 border border-white/40 dark:border-white/10 ${
+            className={`w-full flex items-center justify-center gap-3 py-4 rounded-2xl font-black shadow-xl transition-all duration-300 transform active:scale-95 border border-white/40 dark:border-white/10 ${
               message.trim() 
                 ? 'bg-[#25D366] text-white hover:bg-[#20ba5a] hover:-translate-y-1 shadow-[#25D366]/20' 
                 : 'bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed shadow-none'
             }`}
           >
             <MessageCircle className="w-6 h-6" />
-            <span>إرسال الطلب عبر واتساب</span>
+            <span className="text-base">إرسال الطلب عبر واتساب</span>
             <Send className="w-5 h-5 opacity-50 mr-2 rotate-180" />
           </button>
           <p className="text-center text-xs text-gray-500 dark:text-gray-400 font-medium italic">
