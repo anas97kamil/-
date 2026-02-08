@@ -4,19 +4,19 @@ import { Recipe } from '../types';
 
 export const generateRecipe = async (userRequest: string): Promise<Recipe | null> => {
   try {
-    // Create a new GoogleGenAI instance right before the call to ensure the latest config/key usage
     const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
     
-    // Using gemini-3-pro-preview for complex reasoning tasks like structured recipe generation
     const response: GenerateContentResponse = await ai.models.generateContent({
       model: "gemini-3-pro-preview",
       contents: [{
         parts: [{
-          text: `أنت شيف حلويات خبير في "مخبز كوكيز". يريد المستخدم وصفة لـ: "${userRequest}".
+          text: `أنت شيف حلويات عالمي في "مخبز كوكيز". يريد المستخدم ابتكار وصفة لـ: "${userRequest}".
         
-          قدم وصفة دقيقة وشهية باللغة العربية.
-          إذا طلب المستخدم شيئاً لا علاقة له بالمخبوزات، حاول تقديم بديل من عالم الكوكيز أو الحلويات.
-
+          تعليماتك:
+          1. قدم وصفة دقيقة واحترافية باللغة العربية الفصحى البسيطة.
+          2. اجعل الوصفة مبتكرة وشهية.
+          3. أضف "نصيحة الشيف" (chefTip) تكون نصيحة تقنية لضمان أفضل نتيجة (مثلاً عن درجة حرارة الزبدة أو وقت التبريد).
+          
           يجب أن يكون الرد بتنسيق JSON حصراً.`
         }]
       }],
@@ -30,14 +30,14 @@ export const generateRecipe = async (userRequest: string): Promise<Recipe | null
             ingredients: { type: Type.ARRAY, items: { type: Type.STRING } },
             instructions: { type: Type.ARRAY, items: { type: Type.STRING } },
             prepTime: { type: Type.STRING },
-            difficulty: { type: Type.STRING, enum: ["سهل", "متوسط", "صعب"] }
+            difficulty: { type: Type.STRING, enum: ["سهل", "متوسط", "صعب"] },
+            chefTip: { type: Type.STRING, description: "نصيحة تقنية من الشيف لنجاح الوصفة" }
           },
-          required: ["title", "description", "ingredients", "instructions", "prepTime", "difficulty"]
+          required: ["title", "description", "ingredients", "instructions", "prepTime", "difficulty", "chefTip"]
         }
       }
     });
 
-    // Access .text property directly as per latest guidelines
     const text = response.text;
     if (!text) return null;
     

@@ -1,59 +1,29 @@
 
-import React, { useState } from 'react';
-import { Cookie } from 'lucide-react';
+import React from 'react';
 
 /**
- * استخدام المسار المباشر من الجذر لضمان عمل الشعار في كافة البيئات (Vercel, GitHub, Local)
- * دون الحاجة لمعالجة الملف كـ Module.
+ * استخدام شعار المخبز المحلي من المجلد الرئيسي
  */
 export const LOGO_URL = '/logo.png';
 
 interface LogoProps {
   className?: string;
+  isAnimated?: boolean;
 }
 
-export const Logo: React.FC<LogoProps> = ({ className }) => {
-  const [imageError, setImageError] = useState(false);
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
-
+export const Logo: React.FC<LogoProps> = ({ className, isAnimated = true }) => {
   return (
-    <div className={`relative flex flex-col items-center justify-center select-none ${className}`}>
-      <div className="relative w-full h-full flex items-center justify-center">
-        {!imageError ? (
-          <>
-            <img 
-              src={LOGO_URL} 
-              alt="مخبز كوكيز" 
-              className={`w-full h-full object-contain transition-all duration-700 ${isImageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
-              onLoad={() => setIsImageLoaded(true)}
-              onError={(e) => {
-                console.error("فشل تحميل الشعار من المسار:", LOGO_URL);
-                setImageError(true);
-              }}
-            />
-            {!isImageLoaded && (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-10 h-10 rounded-full border-t-2 border-[#FA8072] animate-spin"></div>
-              </div>
-            )}
-          </>
-        ) : (
-          /* شعار احتياطي يظهر فقط في حال فشل تحميل ملف logo.png تماماً */
-          <div className="relative w-32 h-32 md:w-48 md:h-48 flex items-center justify-center group">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#FA8072] to-[#FFB6C1] rounded-full blur-2xl opacity-20"></div>
-            <div className="relative w-full h-full bg-white dark:bg-slate-800 rounded-full border-4 border-[#FA8072]/30 flex flex-col items-center justify-center shadow-2xl">
-               <Cookie size={60} className="text-[#FA8072] animate-bounce mb-1" />
-               <span className="text-[10px] font-black text-[#FA8072]">COOKIES</span>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {isImageLoaded && (
-        <div className="mt-4 flex flex-col items-center gap-1 opacity-30">
-           <div className="w-16 h-1 bg-gradient-to-r from-transparent via-[#FA8072] to-transparent rounded-full"></div>
-        </div>
-      )}
+    <div className={`relative flex items-center justify-center select-none ${className}`}>
+      <img 
+        src={LOGO_URL} 
+        alt="مخبز كوكيز" 
+        className={`w-full h-full object-contain ${isAnimated ? 'animate-bounce-slow' : ''} transition-transform duration-500 hover:scale-110`}
+        style={{ filter: 'drop-shadow(0 5px 10px rgba(0,0,0,0.1))' }}
+        onError={(e) => {
+          // في حال عدم توفر الصورة المحلية، نستخدم أيقونة احتياطية
+          (e.target as HTMLImageElement).src = 'https://cdn-icons-png.flaticon.com/512/5479/5479008.png';
+        }}
+      />
     </div>
   );
 };

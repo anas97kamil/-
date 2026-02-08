@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
   <head>
@@ -21,11 +22,22 @@
             animation: {
               'spin-slow': 'spin 3s linear infinite',
               'soft-pulse': 'soft-pulse 8s ease-in-out infinite',
+              'bounce-slow': 'bounce-slow 3s ease-in-out infinite',
+              'welcome-wave': 'welcome-wave 4s ease-in-out infinite',
             },
             keyframes: {
               'soft-pulse': {
                 '0%, 100%': { opacity: '0.15', transform: 'scale(1)' },
                 '50%': { opacity: '0.3', transform: 'scale(1.05)' },
+              },
+              'bounce-slow': {
+                '0%, 100%': { transform: 'translateY(-5%)', animationTimingFunction: 'cubic-bezier(0.8,0,1,1)' },
+                '50%': { transform: 'none', animationTimingFunction: 'cubic-bezier(0,0,0.2,1)' }
+              },
+              'welcome-wave': {
+                '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+                '25%': { transform: 'translateY(-5px) rotate(-1deg)' },
+                '75%': { transform: 'translateY(5px) rotate(1deg)' }
               }
             }
           },

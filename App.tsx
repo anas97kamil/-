@@ -4,8 +4,7 @@ import Header from './components/Header';
 import InfoBox from './components/InfoBox';
 import OrderForm from './components/OrderForm';
 import SocialCard from './components/SocialCard';
-import Logo from './components/Logo';
-import RecipeGenerator from './components/RecipeGenerator';
+import FooterFeedback from './components/FooterFeedback';
 import { ProductsTab } from './components/ProductsTab';
 import { Cookie, ChefHat, Utensils, Star, Phone, LayoutGrid, Home } from 'lucide-react';
 
@@ -56,6 +55,7 @@ const App: React.FC = () => {
       className={`min-h-screen flex flex-col cursor-pointer sm:cursor-auto relative overflow-hidden pb-20 transition-colors duration-500 ${isDarkMode ? 'dark' : ''}`} 
       onClick={handleGlobalClick}
     >
+      {/* Background Elements */}
       <div className="fixed inset-0 w-full h-full pointer-events-none z-0">
         <div className="absolute top-[5%] left-[5%] text-[#FA8072] opacity-[0.1] dark:opacity-[0.05] will-change-transform" style={{ transform: `translate3d(0, ${scrollY * 0.1}px, 0) rotate(15deg)` }}><Cookie size={120} /></div>
         <div className="absolute top-[15%] right-[8%] text-[#D4A76A] opacity-[0.1] dark:opacity-[0.05] will-change-transform" style={{ transform: `translate3d(0, ${scrollY * 0.15}px, 0) rotate(-10deg)` }}><ChefHat size={140} /></div>
@@ -66,12 +66,7 @@ const App: React.FC = () => {
       <Header isDarkMode={isDarkMode} onToggleDarkMode={toggleDarkMode} />
 
       <main className="flex-grow container mx-auto px-4 pt-32 space-y-12 relative z-10 max-w-5xl">
-        <div className="flex justify-center pt-4 relative">
-          <Logo 
-            className="w-[180px] h-[180px] md:w-[240px] md:h-[240px] drop-shadow-[0_20px_50px_rgba(250,128,114,0.3)] dark:drop-shadow-[0_20px_50px_rgba(250,128,114,0.15)] hover:scale-105 transition-transform duration-500" 
-          />
-        </div>
-
+        {/* Navigation Tabs */}
         <div className="flex justify-center mb-8">
           <div className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl p-1.5 rounded-full border border-white/50 dark:border-white/10 shadow-xl flex gap-2">
             <button 
@@ -94,18 +89,18 @@ const App: React.FC = () => {
         <div className="min-h-[400px]">
           {activeTab === 'home' ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 animate-in fade-in duration-700 pb-10">
-              {/* Recipe Generator Added for AI Functionality */}
-              <div className="md:col-span-2 transform transition-all duration-500 hover:scale-[1.01] animate-in slide-in-from-bottom-10 fade-in duration-1000 delay-50">
-                <RecipeGenerator />
-              </div>
-              <div className="md:col-span-2 transform transition-all duration-500 hover:scale-[1.01] animate-in slide-in-from-bottom-10 fade-in duration-1000 delay-100">
+              <div className="md:col-span-2 transform transition-all duration-500 hover:scale-[1.01] animate-in slide-in-from-bottom-10 fade-in duration-1000 delay-200">
                 <OrderForm />
               </div>
-              <div className="md:col-span-1 transform transition-all duration-500 hover:scale-[1.02] animate-in slide-in-from-bottom-10 fade-in duration-1000 delay-200">
+              <div className="md:col-span-1 transform transition-all duration-500 hover:scale-[1.02] animate-in slide-in-from-bottom-10 fade-in duration-1000 delay-300">
                 <SocialCard />
               </div>
               <div className="md:col-span-1 transform transition-all duration-500 hover:scale-[1.02] animate-in slide-in-from-bottom-10 fade-in duration-1000 delay-400">
                 <InfoBox />
+              </div>
+              {/* Values and Rating Section - Compact */}
+              <div className="md:col-span-2">
+                <FooterFeedback />
               </div>
             </div>
           ) : (
@@ -116,13 +111,14 @@ const App: React.FC = () => {
         </div>
       </main>
 
-      <footer className="mt-20 py-12 relative z-10 text-center">
+      <footer className="mt-12 py-12 relative z-10 text-center">
         <div className="inline-block bg-white/20 dark:bg-slate-900/30 backdrop-blur-md px-10 py-5 rounded-full border border-white/30 dark:border-white/10 shadow-sm transition-transform active:scale-95 duration-200">
           <p className="text-gray-700 dark:text-gray-300 font-bold mb-1">جميع الحقوق محفوظة 2026 - مخبز كوكيز</p>
           <p className="text-xs text-[#FA8072] font-medium tracking-widest uppercase">صُنع يدوياً بكل حُب ❤️</p>
         </div>
       </footer>
 
+      {/* Floating Action Buttons */}
       <a 
         href="tel:+963957432958"
         className="fixed bottom-6 left-6 z-[60] bg-[#16a34a] text-white pl-3 pr-5 py-2.5 rounded-full shadow-[0_15px_35px_rgba(22,163,74,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 group flex items-center gap-2.5 border-2 border-white/30 backdrop-blur-md"
